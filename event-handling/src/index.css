@@ -50,3 +50,7 @@ input{
   width: 400px;
   border-radius:15px;
 }
+p{
+  color:black;
+  font-size: large;
+}

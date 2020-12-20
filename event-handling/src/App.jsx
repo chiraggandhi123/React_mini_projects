@@ -1,35 +1,66 @@
-import react, {useState} from "react";
+import react, {useState} from "react"
 import './index.css'
+
 const App = ()=>{
-    // const fullName = ""
-    const [fullName, setfullName] = useState("");
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const showName = (e)=>{
-        // console.log("click")
-        e.preventDefault();
-        setfullName(firstName+lastName)
+    const [state, setstate] = useState({
+        fname:"",
+        lname:"",
+        email:"",
+        phone:"",
+    });
+    const submitform = ()=>{
+        
     }
-    const showFirstName = (e)=>{
-        setFirstName(e.target.value)
-    }
-    const showLastName = (e)=>{
-        setLastName(e.target.value)
+    const inputEvent = (e)=>{
+        // console.log(e.target.value)
+        // console.log(e.target.name)
+    
+        const {name, value} = e.target
+
+        setstate((pv)=>{
+            return{
+                ...pv,
+                [name]:value,
+            }
+        })
     }
     return(
         <>
-        <form onSubmit={showName}>
+        <form onSubmit={submitform}>
+
+        
         <div>
-            
-            <h1>Hello {fullName}</h1>
-            <input type="text" onChange={showFirstName} name="" placeholder="Enter your first name"id=""/>
-            <input type="text" onChange={showLastName}name="" placeholder="Enter your last name"id=""/>
-            <button type="submit">Click me</button>
+        <h1>hello {state.fname} {state.lname}</h1>
+        <p>{state.email} | {state.phone}</p> 
+        
+        <input type="text"
+        name = "fname"
+        value = {setstate.fname}
+        onChange = {inputEvent}
+        placeholder="Enter your first name"/>
+        <input type="text"
+        name = "lname"
+        value = {setstate.lname}
+        onChange = {inputEvent}
+        placeholder="Enter your last name"/>
+        <input type="email"
+        name = "email"
+        value = {setstate.email}
+        onChange = {inputEvent}
+        placeholder="Enter your email"/>
+        <input type="phone"
+        name = "phone"
+        value = {setstate.phone}
+        onChange = {inputEvent}
+        placeholder="Enter your phone number"/>
+        <button type="submit">Click me</button>
         </div>
-        </form>
+        </form>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+        
+    
         
         </>
     )
 }
 
-export default App;
+export default App
